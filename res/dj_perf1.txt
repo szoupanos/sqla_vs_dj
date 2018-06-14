@@ -1,0 +1,115 @@
+(aiidapy) aiida@ubuntu-aiida-vm1:~/aiida-code/perf_experiments/dj_experiments/try2/mysite$ ./manage.py bench2
+Adding data
+Creating the group and committing it
+Time elapsed in sec (group creation and commit) 0.0134148597717
+Creating the nodes and committing them
+Time elapsed in sec (node creation and commit) 8.65744400024
+Adding posts one by one to the category and to the session in general
+Counter: 100, Time elapsed in sec: 0.271583795547, Throughput (time per 1000 nodes): 0.271583795547
+Counter: 200, Time elapsed in sec: 0.525307893753, Throughput (time per 1000 nodes): 0.253724098206
+Counter: 300, Time elapsed in sec: 0.787567853928, Throughput (time per 1000 nodes): 0.262259960175
+Counter: 400, Time elapsed in sec: 1.04138994217, Throughput (time per 1000 nodes): 0.253822088242
+Counter: 500, Time elapsed in sec: 1.3000228405, Throughput (time per 1000 nodes): 0.258632898331
+Counter: 600, Time elapsed in sec: 1.54294681549, Throughput (time per 1000 nodes): 0.242923974991
+Counter: 700, Time elapsed in sec: 1.80033683777, Throughput (time per 1000 nodes): 0.257390022278
+Counter: 800, Time elapsed in sec: 2.05170989037, Throughput (time per 1000 nodes): 0.251373052597
+Counter: 900, Time elapsed in sec: 2.2937078476, Throughput (time per 1000 nodes): 0.24199795723
+Counter: 1000, Time elapsed in sec: 2.53825378418, Throughput (time per 1000 nodes): 0.244545936584
+Counter: 1100, Time elapsed in sec: 2.78466296196, Throughput (time per 1000 nodes): 0.24640917778
+Counter: 1200, Time elapsed in sec: 3.02183794975, Throughput (time per 1000 nodes): 0.237174987793
+Counter: 1300, Time elapsed in sec: 3.24633097649, Throughput (time per 1000 nodes): 0.224493026733
+Counter: 1400, Time elapsed in sec: 3.4999499321, Throughput (time per 1000 nodes): 0.253618955612
+Counter: 1500, Time elapsed in sec: 3.75906777382, Throughput (time per 1000 nodes): 0.259117841721
+Counter: 1600, Time elapsed in sec: 4.06331276894, Throughput (time per 1000 nodes): 0.304244995117
+Counter: 1700, Time elapsed in sec: 4.37005281448, Throughput (time per 1000 nodes): 0.306740045547
+Counter: 1800, Time elapsed in sec: 4.6553208828, Throughput (time per 1000 nodes): 0.285268068314
+Counter: 1900, Time elapsed in sec: 4.90459990501, Throughput (time per 1000 nodes): 0.249279022217
+Counter: 2000, Time elapsed in sec: 5.1584777832, Throughput (time per 1000 nodes): 0.253877878189
+Counter: 2100, Time elapsed in sec: 5.41933298111, Throughput (time per 1000 nodes): 0.260855197906
+Counter: 2200, Time elapsed in sec: 5.67289996147, Throughput (time per 1000 nodes): 0.253566980362
+Counter: 2300, Time elapsed in sec: 5.92096781731, Throughput (time per 1000 nodes): 0.248067855835
+Counter: 2400, Time elapsed in sec: 6.18357586861, Throughput (time per 1000 nodes): 0.2626080513
+Counter: 2500, Time elapsed in sec: 6.49252486229, Throughput (time per 1000 nodes): 0.308948993683
+Counter: 2600, Time elapsed in sec: 6.76965093613, Throughput (time per 1000 nodes): 0.277126073837
+Counter: 2700, Time elapsed in sec: 7.09389281273, Throughput (time per 1000 nodes): 0.324241876602
+Counter: 2800, Time elapsed in sec: 7.35200595856, Throughput (time per 1000 nodes): 0.258113145828
+Counter: 2900, Time elapsed in sec: 7.60627293587, Throughput (time per 1000 nodes): 0.25426697731
+Counter: 3000, Time elapsed in sec: 7.88022184372, Throughput (time per 1000 nodes): 0.273948907852
+Counter: 3100, Time elapsed in sec: 8.13151884079, Throughput (time per 1000 nodes): 0.25129699707
+Counter: 3200, Time elapsed in sec: 8.38134098053, Throughput (time per 1000 nodes): 0.24982213974
+Counter: 3300, Time elapsed in sec: 8.62536597252, Throughput (time per 1000 nodes): 0.244024991989
+Counter: 3400, Time elapsed in sec: 8.84476876259, Throughput (time per 1000 nodes): 0.21940279007
+Counter: 3500, Time elapsed in sec: 9.07377386093, Throughput (time per 1000 nodes): 0.229005098343
+Counter: 3600, Time elapsed in sec: 9.31754183769, Throughput (time per 1000 nodes): 0.243767976761
+Counter: 3700, Time elapsed in sec: 9.57250285149, Throughput (time per 1000 nodes): 0.254961013794
+Counter: 3800, Time elapsed in sec: 9.82003879547, Throughput (time per 1000 nodes): 0.247535943985
+Counter: 3900, Time elapsed in sec: 10.0248289108, Throughput (time per 1000 nodes): 0.204790115356
+Counter: 4000, Time elapsed in sec: 10.271488905, Throughput (time per 1000 nodes): 0.246659994125
+Counter: 4100, Time elapsed in sec: 10.5253918171, Throughput (time per 1000 nodes): 0.25390291214
+Counter: 4200, Time elapsed in sec: 10.7661509514, Throughput (time per 1000 nodes): 0.240759134293
+Counter: 4300, Time elapsed in sec: 11.0168099403, Throughput (time per 1000 nodes): 0.250658988953
+Counter: 4400, Time elapsed in sec: 11.2671079636, Throughput (time per 1000 nodes): 0.250298023224
+Counter: 4500, Time elapsed in sec: 11.5135529041, Throughput (time per 1000 nodes): 0.246444940567
+Counter: 4600, Time elapsed in sec: 11.7581079006, Throughput (time per 1000 nodes): 0.24455499649
+Counter: 4700, Time elapsed in sec: 12.0049328804, Throughput (time per 1000 nodes): 0.246824979782
+Counter: 4800, Time elapsed in sec: 12.2510797977, Throughput (time per 1000 nodes): 0.246146917343
+Counter: 4900, Time elapsed in sec: 12.4950997829, Throughput (time per 1000 nodes): 0.244019985199
+Counter: 5000, Time elapsed in sec: 12.7383527756, Throughput (time per 1000 nodes): 0.24325299263
+Counter: 5100, Time elapsed in sec: 12.9728999138, Throughput (time per 1000 nodes): 0.234547138214
+Counter: 5200, Time elapsed in sec: 13.2129468918, Throughput (time per 1000 nodes): 0.240046977997
+Counter: 5300, Time elapsed in sec: 13.4538199902, Throughput (time per 1000 nodes): 0.240873098373
+Counter: 5400, Time elapsed in sec: 13.6976518631, Throughput (time per 1000 nodes): 0.24383187294
+Counter: 5500, Time elapsed in sec: 13.9399478436, Throughput (time per 1000 nodes): 0.242295980453
+Counter: 5600, Time elapsed in sec: 14.2034988403, Throughput (time per 1000 nodes): 0.26355099678
+Counter: 5700, Time elapsed in sec: 14.4476878643, Throughput (time per 1000 nodes): 0.244189023972
+Counter: 5800, Time elapsed in sec: 14.7120859623, Throughput (time per 1000 nodes): 0.264398097992
+Counter: 5900, Time elapsed in sec: 14.9675199986, Throughput (time per 1000 nodes): 0.255434036255
+Counter: 6000, Time elapsed in sec: 15.2195608616, Throughput (time per 1000 nodes): 0.252040863037
+Counter: 6100, Time elapsed in sec: 15.4789509773, Throughput (time per 1000 nodes): 0.259390115738
+Counter: 6200, Time elapsed in sec: 15.7343788147, Throughput (time per 1000 nodes): 0.255427837372
+Counter: 6300, Time elapsed in sec: 15.9736728668, Throughput (time per 1000 nodes): 0.239294052124
+Counter: 6400, Time elapsed in sec: 16.2179789543, Throughput (time per 1000 nodes): 0.244306087494
+Counter: 6500, Time elapsed in sec: 16.4877359867, Throughput (time per 1000 nodes): 0.269757032394
+Counter: 6600, Time elapsed in sec: 16.7760748863, Throughput (time per 1000 nodes): 0.288338899612
+Counter: 6700, Time elapsed in sec: 17.0340747833, Throughput (time per 1000 nodes): 0.257999897003
+Counter: 6800, Time elapsed in sec: 17.2808477879, Throughput (time per 1000 nodes): 0.246773004532
+Counter: 6900, Time elapsed in sec: 17.5585517883, Throughput (time per 1000 nodes): 0.277704000473
+Counter: 7000, Time elapsed in sec: 17.797151804, Throughput (time per 1000 nodes): 0.23860001564
+Counter: 7100, Time elapsed in sec: 18.0357058048, Throughput (time per 1000 nodes): 0.238554000854
+Counter: 7200, Time elapsed in sec: 18.3332779408, Throughput (time per 1000 nodes): 0.297572135925
+Counter: 7300, Time elapsed in sec: 18.6438207626, Throughput (time per 1000 nodes): 0.310542821884
+Counter: 7400, Time elapsed in sec: 18.96459198, Throughput (time per 1000 nodes): 0.320771217346
+Counter: 7500, Time elapsed in sec: 19.2268359661, Throughput (time per 1000 nodes): 0.26224398613
+Counter: 7600, Time elapsed in sec: 19.4529299736, Throughput (time per 1000 nodes): 0.226094007492
+Counter: 7700, Time elapsed in sec: 19.7465779781, Throughput (time per 1000 nodes): 0.293648004532
+Counter: 7800, Time elapsed in sec: 20.0383598804, Throughput (time per 1000 nodes): 0.291781902313
+Counter: 7900, Time elapsed in sec: 20.3229629993, Throughput (time per 1000 nodes): 0.284603118896
+Counter: 8000, Time elapsed in sec: 20.9371519089, Throughput (time per 1000 nodes): 0.614188909531
+Counter: 8100, Time elapsed in sec: 21.4839727879, Throughput (time per 1000 nodes): 0.546820878983
+Counter: 8200, Time elapsed in sec: 21.8156299591, Throughput (time per 1000 nodes): 0.331657171249
+Counter: 8300, Time elapsed in sec: 22.1051249504, Throughput (time per 1000 nodes): 0.289494991302
+Counter: 8400, Time elapsed in sec: 22.4713318348, Throughput (time per 1000 nodes): 0.366206884384
+Counter: 8500, Time elapsed in sec: 22.7468719482, Throughput (time per 1000 nodes): 0.275540113449
+Counter: 8600, Time elapsed in sec: 23.2261958122, Throughput (time per 1000 nodes): 0.479323863983
+Counter: 8700, Time elapsed in sec: 23.5123357773, Throughput (time per 1000 nodes): 0.286139965057
+Counter: 8800, Time elapsed in sec: 23.8559098244, Throughput (time per 1000 nodes): 0.343574047089
+Counter: 8900, Time elapsed in sec: 24.1143689156, Throughput (time per 1000 nodes): 0.258459091187
+Counter: 9000, Time elapsed in sec: 24.4069049358, Throughput (time per 1000 nodes): 0.292536020279
+Counter: 9100, Time elapsed in sec: 24.6581587791, Throughput (time per 1000 nodes): 0.251253843307
+Counter: 9200, Time elapsed in sec: 24.9348199368, Throughput (time per 1000 nodes): 0.276661157608
+Counter: 9300, Time elapsed in sec: 25.1870539188, Throughput (time per 1000 nodes): 0.252233982086
+Counter: 9400, Time elapsed in sec: 25.481828928, Throughput (time per 1000 nodes): 0.294775009155
+Counter: 9500, Time elapsed in sec: 25.8017718792, Throughput (time per 1000 nodes): 0.319942951202
+Counter: 9600, Time elapsed in sec: 26.0902109146, Throughput (time per 1000 nodes): 0.288439035416
+Counter: 9700, Time elapsed in sec: 26.3464438915, Throughput (time per 1000 nodes): 0.256232976913
+Counter: 9800, Time elapsed in sec: 26.6128509045, Throughput (time per 1000 nodes): 0.266407012939
+Counter: 9900, Time elapsed in sec: 26.868642807, Throughput (time per 1000 nodes): 0.255791902542
+Time elapsed in sec 27.2715389729
+Time elapsed in sec (total loading procedure) 35.9446380138
+Data added
+DbGroup ====>  [<DbGroup: DbGroup object>]
+DbNode ====>  9999
+Cleaning tables
+Tables cleaned
+DbGroup ====>  []
+DbNode ====>  0
