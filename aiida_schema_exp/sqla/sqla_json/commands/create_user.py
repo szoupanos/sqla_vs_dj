@@ -5,29 +5,32 @@ def cmd():
     """Creating a user"""
     # Importing the engine
     from sqla_json.sqla_management import engine
-    from sqla_json.sqlalchemy.orm import sessionmaker
+    from sqlalchemy.orm import sessionmaker
     from sqla_json.models.user import DbUser
 
-    print "Creating user ed"
-    ed_user = DbUser('a@b.c', first_name='Ed', last_name='Jones', password='edspassword')
+    from sqla_json.commands import DEFAULT_USER_EMAIL
 
-    print "Ed first name ", ed_user.first_name
-    print "ED user id", str(ed_user.id)
+    print "Creating user"
 
+    # Creating the needed session
     Session = sessionmaker(bind=engine)
     session = Session()
 
-    session.add(ed_user)
+    # Checking if user exists
+    usr_exists = session.query(
+        session.query(DbUser).filter_by(email=DEFAULT_USER_EMAIL).exists()
+    ).scalar()
 
-    our_user = session.query(DbUser).filter_by(first_name='Ed').first()
-    print "Query result ", our_user
-
-    print ed_user.id
-    print our_user.id
-
-    session.commit()
-
-    print "Session commited"
+    if not usr_exists:
+        # Creating the user that doesn't exist
+        curr_user = DbUser(DEFAULT_USER_EMAIL)
+        session.add(curr_user)
+        session.commit()
+        print "The user with email {} was created".format(
+            DEFAULT_USER_EMAIL)
+    else:
+        print "The user with email {} was already there".format(
+            DEFAULT_USER_EMAIL)
 
 
 if __name__ == '__main__':
@@ -37,7 +40,9 @@ if __name__ == '__main__':
     dir_of_curr_file = os.path.dirname(os.path.realpath(__file__))
     # project folder
     par_dir = os.path.dirname(dir_of_curr_file)
+    proect_dir = os.path.dirname(par_dir)
     # adding the project folder to the path
-    sys.path.append(par_dir)
+    sys.path.append(proect_dir)
+
     # calling the command
     cmd()

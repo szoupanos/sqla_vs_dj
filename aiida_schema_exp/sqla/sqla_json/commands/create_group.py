@@ -1,16 +1,17 @@
 import click
 
-
 @click.command()
 def cmd():
     """Creating a user"""
     # Importing the engine
     from sqla_json.sqla_management import engine
     from sqlalchemy.orm import sessionmaker
-    from sqla_json.commands import NUMBER_OF_NODES_TO_CREATE, DEFAULT_USER_EMAIL
     from sqla_json.models.user import DbUser
-    from sqla_json.models.node import DbNode
-    import json
+    from sqla_json.models.group import DbGroup
+
+    from sqla_json.commands import DEFAULT_USER_EMAIL, DEFAULT_GROUP_NAME
+
+    print "Creating user"
 
     # Creating the needed session
     Session = sessionmaker(bind=engine)
@@ -34,23 +35,26 @@ def cmd():
         curr_user = session.query(DbUser).filter_by(
             email=DEFAULT_USER_EMAIL).first()
 
-    print "Creating node"
+    print "Creating group for user {}".format(DEFAULT_USER_EMAIL)
 
-    for i in range(NUMBER_OF_NODES_TO_CREATE):
-        print "Creating node number {}".format(i)
+    import sys
+    sys.exit()
 
-        my_json_attr = json.dumps(
-            ['attr', i, {'bar': ('baz', None, 1.0, 2)}])
-        my_json_extra = json.dumps(
-            ['extra', i, {'bar': ('baz', None, 1.0, 2)}])
+    # Checking if group exists
+    grp_exists = session.query(
+        session.query(DbGroup).filter_by(name=DEFAULT_GROUP_NAME).exists()
+    ).scalar()
 
-        new_node = DbNode(label='my_node_{}'.format(i), user=curr_user,
-                          attributes=my_json_attr, extras=my_json_extra)
-        session.add(new_node)
+    import sys
+    sys.exit()
 
-    session.commit()
-
-    print "Created"
+    if not grp_exists:
+        group = DbGroup(name=DEFAULT_GROUP_NAME, user=curr_user)
+        session.add(group)
+        session.commit()
+        print "Created the group {}".format(DEFAULT_GROUP_NAME)
+    else:
+        print "The group {} already exists".format(DEFAULT_GROUP_NAME)
 
 
 if __name__ == '__main__':
