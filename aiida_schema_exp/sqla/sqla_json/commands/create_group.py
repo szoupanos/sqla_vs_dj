@@ -37,16 +37,10 @@ def cmd():
 
     print "Creating group for user {}".format(DEFAULT_USER_EMAIL)
 
-    import sys
-    sys.exit()
-
     # Checking if group exists
     grp_exists = session.query(
         session.query(DbGroup).filter_by(name=DEFAULT_GROUP_NAME).exists()
     ).scalar()
-
-    import sys
-    sys.exit()
 
     if not grp_exists:
         group = DbGroup(name=DEFAULT_GROUP_NAME, user=curr_user)

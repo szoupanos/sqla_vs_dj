@@ -22,6 +22,7 @@ from sqla_json.models.base import Base
 # from aiida.backends.sqlalchemy.models.utils import uuid_func
 from sqla_json.models.utils import uuid_func
 
+from sqla_json.models.node import DbNode
 
 table_groups_nodes = Table(
     'db_dbgroup_dbnodes',
