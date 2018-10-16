@@ -11,6 +11,7 @@ def cmd():
     from sqla_json.models.user import DbUser
     from sqla_json.models.node import DbNode
     import json
+    import time
 
     # Creating the needed session
     Session = sessionmaker(bind=engine)
@@ -34,10 +35,12 @@ def cmd():
         curr_user = session.query(DbUser).filter_by(
             email=DEFAULT_USER_EMAIL).first()
 
-    print "Creating node"
+    print "Creating nodes & starting measuring time"
+    start_time = time.time()
 
+    counter = 0
     for i in range(NUMBER_OF_NODES_TO_CREATE):
-        print "Creating node number {}".format(i)
+        # print "Creating node number {}".format(i)
 
         my_json_attr = json.dumps(
             ['attr', i, {'bar': ('baz', None, 1.0, 2)}])
@@ -47,10 +50,13 @@ def cmd():
         new_node = DbNode(label='my_node_{}'.format(i), user=curr_user,
                           attributes=my_json_attr, extras=my_json_extra)
         session.add(new_node)
+        counter += 1
 
     session.commit()
+    end_time = time.time()
 
-    print "Created"
+    print "{} nodes created".format(counter)
+    print "Elapsed time --- {} seconds --- ".format(end_time - start_time)
 
 
 if __name__ == '__main__':
