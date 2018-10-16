@@ -11,7 +11,7 @@
 from sqlalchemy.schema import Column
 from sqlalchemy.types import Integer, DateTime, String
 
-import sqla_json.timezone
+from sqla_json import timezone
 from sqla_json.models.base import Base
 from sqla_json.aiida_exceptions import ValidationError
 

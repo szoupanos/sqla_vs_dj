@@ -17,7 +17,7 @@ from sqlalchemy.types import Integer, Boolean, Text
 from sqlalchemy.dialects.postgresql import JSONB
 
 # from aiida.transport import TransportFactory
-from models.base import Base
+from sqla_json.models.base import Base
 # from aiida_exceptions import (DbContentError, MissingPluginError,
 #                                      ConfigurationError)
 

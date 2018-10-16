@@ -35,7 +35,9 @@ if __name__ == '__main__':
     dir_of_curr_file = os.path.dirname(os.path.realpath(__file__))
     # project folder
     par_dir = os.path.dirname(dir_of_curr_file)
+    proect_dir = os.path.dirname(par_dir)
     # adding the project folder to the path
-    sys.path.append(par_dir)
+    sys.path.append(proect_dir)
+
     # calling the command
     cmd()

@@ -23,7 +23,7 @@ from sqla_json.models.base import Base, _QueryProperty, _AiidaQuery
 from sqla_json.models.utils import uuid_func
 from sqla_json.aiida_datastructures import (wf_states, wf_data_types,
                                   wf_data_value_types, wf_default_call)
-import sqla_json.timezone
+from sqla_json import timezone
 
 
 class DbWorkflow(Base):

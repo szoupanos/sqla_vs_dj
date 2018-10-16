@@ -17,7 +17,7 @@ from sqlalchemy.types import Integer, String, DateTime
 # import aiida.backends.sqlalchemy as sa
 from sqla_json.models.base import get_scoped_session
 from sqla_json.models.base import Base
-import sqla_json.timezone
+from sqla_json import timezone
 
 
 class DbSetting(Base):
