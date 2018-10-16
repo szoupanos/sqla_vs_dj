@@ -8,29 +8,31 @@ class Command(BaseCommand):
 
     def handle(self, *args, **kwargs):
         from db.models import DbNode
-        from db.models import DbUser
         from db import timezone
-        import json
 
-        min = timezone.now().minute
+        import json
+        import time
+
         sec = timezone.now().second
         msec = timezone.now().microsecond
 
-        usr = DbUser.objects.create(email='{}@{}.{}'.format(msec, sec, min))
-
-        print "Creating node"
-
-        for i in range(100):
-            print i
-
+        print "Finding all the nodes and updating them one by one"
+        counter = 0
+        start_time = time.time()
+        for dbn in DbNode.objects.all():
             my_json_attr = json.dumps(
-                ['attr', i, {'bar': ('baz', None, 1.0, 2)}])
+                ['attr', msec + counter, {'bar': ('baz', None,
+                                                  sec + counter, 2)}])
             my_json_extra = json.dumps(
-                ['extra', i, {'bar': ('baz', None, 1.0, 2)}])
+                ['extra', msec + counter, {'bar': ('baz', None,
+                                                   sec + counter, 2)}])
+            dbn.jattributes = my_json_attr
+            dbn.jextras = my_json_extra
+            dbn.save()
+            counter += 1
 
-            DbNode.objects.create(label='my_node_{}'.format(i), user=usr,
-                                  jattributes=my_json_attr,
-                                  jextras=my_json_extra)
+        end_time = time.time()
+        print("Updated the json fields (attributes and extras) "
+              "of {} nodes.".format(counter))
 
-        print "Created"
-
+        print "Elapsed time --- {} seconds --- ".format(end_time - start_time)

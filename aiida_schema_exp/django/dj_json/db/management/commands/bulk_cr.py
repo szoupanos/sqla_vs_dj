@@ -12,6 +12,7 @@ class Command(BaseCommand):
         from db.models import DbNode
         from db.models import DbUser
         import json
+        import time
 
         usr, usr_res = DbUser.objects.get_or_create(email=DEFAULT_USER_EMAIL)
         if usr_res:
@@ -21,10 +22,12 @@ class Command(BaseCommand):
             print "The user with email {} was already there".format(
                 DEFAULT_USER_EMAIL)
 
-        print "Creating node"
+        print "Creating nodes & starting measuring time"
+        start_time = time.time()
 
+        counter = 0
         for i in range(NUMBER_OF_NODES_TO_CREATE):
-            print "Creating node number {}".format(i)
+            # print "Creating node number {}".format(i)
 
             my_json_attr = json.dumps(
                 ['attr', i, {'bar': ('baz', None, 1.0, 2)}])
@@ -34,5 +37,9 @@ class Command(BaseCommand):
             DbNode.objects.create(label='my_node_{}'.format(i), user=usr,
                                   jattributes=my_json_attr,
                                   jextras=my_json_extra)
+            counter += 1
 
-        print "Created"
+        end_time = time.time()
+
+        print "{} nodes created".format(counter)
+        print "Elapsed time --- {} seconds --- ".format(end_time - start_time)

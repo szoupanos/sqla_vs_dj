@@ -8,47 +8,43 @@ def cmd():
     from sqla_json.sqla_management import engine
     from sqlalchemy.orm import sessionmaker
     from sqla_json.models.node import DbNode
-    from sqla_json.models.group import DbGroup
+    from sqlalchemy.orm.attributes import flag_modified
+    from sqla_json import timezone
 
-    from sqla_json.commands import DEFAULT_GROUP_NAME
-
+    import json
     import time
-    import sys
+
+    sec = timezone.now().second
+    msec = timezone.now().microsecond
 
     # Creating the needed session
     Session = sessionmaker(bind=engine)
     session = Session()
 
-    # Getting the one and only group with that name
-    dbgroup = session.query(DbGroup).filter_by(name=DEFAULT_GROUP_NAME).first()
-
-    if dbgroup is None:
-        print "No group is found, exiting"
-        sys.exit()
-
-    # Find all nodes
-    print "Getting all the nodes"
+    print "Finding all the nodes and updating them one by one"
+    counter = 0
     start_time = time.time()
 
-    list_node = list()
     for dbn in session.query(DbNode).all():
-        list_node.append(dbn)
+        my_json_attr = json.dumps(
+            ['attr', msec + counter, {'bar': ('baz', None,
+                                              sec + counter, 2)}])
+        my_json_extra = json.dumps(
+            ['extra', msec + counter, {'bar': ('baz', None,
+                                               sec + counter, 2)}])
+        dbn.attributes = my_json_attr
+        dbn.extras = my_json_extra
+        flag_modified(dbn, "attributes")
+        flag_modified(dbn, "extras")
+        session.add(dbn)
+        counter += 1
 
-    print "Found #{} nodes".format(len(list_node))
-
-    # Add the nodes to the group
-    print "Adding the nodes to the group"
-    dbgroup.dbnodes.extend(list_node)
-
-    # It could be added directly with a query
-    # To see the performance
-    # dbgroup.dbnodes.extend(session.query(DbNode))
-
-    session.add(dbgroup)
     session.commit()
     end_time = time.time()
 
-    print "Added to group"
+    print("Updated the json fields (attributes and extras) "
+          "of {} nodes.".format(counter))
+
     print "Elapsed time --- {} seconds --- ".format(end_time - start_time)
 
 

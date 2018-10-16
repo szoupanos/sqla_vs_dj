@@ -27,22 +27,10 @@ def cmd():
         sys.exit()
 
     # Find all nodes
-    print "Getting all the nodes"
+    print "Getting all the nodes and adding them directly to the group"
     start_time = time.time()
 
-    list_node = list()
-    for dbn in session.query(DbNode).all():
-        list_node.append(dbn)
-
-    print "Found #{} nodes".format(len(list_node))
-
-    # Add the nodes to the group
-    print "Adding the nodes to the group"
-    dbgroup.dbnodes.extend(list_node)
-
-    # It could be added directly with a query
-    # To see the performance
-    # dbgroup.dbnodes.extend(session.query(DbNode))
+    dbgroup.dbnodes.extend(session.query(DbNode))
 
     session.add(dbgroup)
     session.commit()

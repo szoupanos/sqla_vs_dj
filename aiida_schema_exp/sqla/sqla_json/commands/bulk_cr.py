@@ -10,6 +10,7 @@ def cmd():
     from sqla_json.commands import NUMBER_OF_NODES_TO_CREATE, DEFAULT_USER_EMAIL
     from sqla_json.models.user import DbUser
     from sqla_json.models.node import DbNode
+
     import json
     import time
 
