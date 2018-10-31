@@ -3,7 +3,9 @@ import click
 
 @click.command()
 def cmd():
-    """Creating a user"""
+    """
+    Normal addition to the group
+    """
     # Importing the engine
     from sqla_json.sqla_management import engine
     from sqlalchemy.orm import sessionmaker

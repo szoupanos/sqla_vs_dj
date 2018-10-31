@@ -3,7 +3,10 @@ import click
 
 @click.command()
 def cmd():
-    """Creating a user"""
+    """
+    Addition to the group with bulk update. To see if it can be done with an
+    intermediary table like db_dbgroup_dbnodes (probably not)
+    """
     # Importing the engine
     from sqla_json.sqla_management import engine
     from sqlalchemy.orm import sessionmaker
@@ -38,12 +41,18 @@ def cmd():
 
     # Add the nodes to the group
     print "Adding the nodes to the group"
-    session.bulk_update_mappings(DbGroup., {'id': dbgroup.id,
-                                           'dbnodes': list_node})
+    # session.bulk_update_mappings(DbGroup, {'id': dbgroup.id,
+    #                                        'dbnodes': list_node})
+    dbgroup.dbnodes = list_node
 
-    print "LALLLALALA ", {'id': dbgroup.id, 'dbnodes': list_node}
+    session.expunge_all()
+
+    session.bulk_save_objects([dbgroup])
     # session.add(dbgroup)
-    # session.commit()
+
+    # print "LALLLALALA ", {'id': dbgroup.id, 'dbnodes': list_node}
+    # session.add(dbgroup)
+    session.commit()
     end_time = time.time()
 
     print "Added to group"

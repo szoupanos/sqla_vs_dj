@@ -3,7 +3,9 @@ import click
 
 @click.command()
 def cmd():
-    """Creating a user"""
+    """
+    Addition to the group with an unevaluated query that returns the users
+    """
     # Importing the engine
     from sqla_json.sqla_management import engine
     from sqlalchemy.orm import sessionmaker

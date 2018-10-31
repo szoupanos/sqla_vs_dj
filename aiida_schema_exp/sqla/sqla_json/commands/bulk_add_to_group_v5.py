@@ -4,7 +4,8 @@ import click
 @click.command()
 def cmd():
     """
-    Group addition with manual SQL statement.
+    Group addition with manual SQL statement that has a template. To see
+    why this is much slower than v4.
     """
     # Importing the engine
     from sqla_json.sqla_management import engine
