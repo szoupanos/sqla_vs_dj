@@ -21,15 +21,16 @@ from sqla_json import timezone
 from sqla_json.models.base import Base
 # from aiida.backends.sqlalchemy.models.utils import uuid_func
 from sqla_json.models.utils import uuid_func
+from sqlalchemy.ext.associationproxy import association_proxy
 
 from sqla_json.models.node import DbNode
 
 table_groups_nodes = Table(
     'db_dbgroup_dbnodes',
     Base.metadata,
-    Column('id', Integer, primary_key=True),
-    Column('dbnode_id', Integer, ForeignKey('db_dbnode.id', deferrable=True, initially="DEFERRED")),
-    Column('dbgroup_id', Integer, ForeignKey('db_dbgroup.id', deferrable=True, initially="DEFERRED"))
+    # Column('id', Integer, primary_key=True),
+    Column('dbnode_id', Integer, ForeignKey('db_dbnode.id', deferrable=True, initially="DEFERRED"), primary_key=True),
+    Column('dbgroup_id', Integer, ForeignKey('db_dbgroup.id', deferrable=True, initially="DEFERRED"), primary_key=True)
 )
 
 
@@ -48,6 +49,17 @@ class DbGroup(Base):
 
     user_id = Column(Integer, ForeignKey('db_dbuser.id', ondelete='CASCADE', deferrable=True, initially="DEFERRED"))
     user = relationship('DbUser', backref=backref('dbgroups', cascade='merge'))
+
+    # dbnodes_relationship =relationship('DbNode', cascade='all,delete,delete-orphan')
+    # # dbnodes_relationship = ('DbNode')
+    # dbnodes = association_proxy('dbnodes_relationship', 'dbnodes',
+    #                         creator=lambda perm: DbNode(perm=perm))
+
+    # dbnodes_relationship = relationship('DbNode', secondary=table_groups_nodes,
+    #                                     backref="dbgroups", lazy='dynamic')
+    #
+    # dbnodes = association_proxy('dbnodes_relationship', 'dbnodes',
+    #                                                     creator=lambda perm: DbNode(id=id))
 
     dbnodes = relationship('DbNode', secondary=table_groups_nodes,
                            backref="dbgroups", lazy='dynamic')

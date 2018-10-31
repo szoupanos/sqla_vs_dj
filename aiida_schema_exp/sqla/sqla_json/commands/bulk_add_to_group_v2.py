@@ -30,6 +30,7 @@ def cmd():
     print "Getting all the nodes and adding them directly to the group"
     start_time = time.time()
 
+    # Addition to the group with an unevaluated query
     dbgroup.dbnodes.extend(session.query(DbNode))
 
     session.add(dbgroup)

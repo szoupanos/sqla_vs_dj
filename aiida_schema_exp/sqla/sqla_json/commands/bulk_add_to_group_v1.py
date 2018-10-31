@@ -36,13 +36,9 @@ def cmd():
 
     print "Found #{} nodes".format(len(list_node))
 
-    # Add the nodes to the group
+    # Add the nodes to the group - Normal addition
     print "Adding the nodes to the group"
     dbgroup.dbnodes.extend(list_node)
-
-    # It could be added directly with a query
-    # To see the performance
-    # dbgroup.dbnodes.extend(session.query(DbNode))
 
     session.add(dbgroup)
     session.commit()
