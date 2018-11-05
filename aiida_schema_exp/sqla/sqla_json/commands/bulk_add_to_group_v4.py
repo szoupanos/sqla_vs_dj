@@ -11,7 +11,6 @@ def cmd():
     from sqlalchemy.orm import sessionmaker
     from sqla_json.models.node import DbNode
     from sqla_json.models.group import DbGroup
-    from sqlalchemy.sql.expression import bindparam
 
     from sqla_json.commands import DEFAULT_GROUP_NAME
 
@@ -32,14 +31,6 @@ def cmd():
     # Find all nodes
     print "Getting all the nodes"
     start_time = time.time()
-
-    ins_dict = list()
-    list_node = list()
-    for (dbn, ) in session.query(DbNode.id).all():
-        list_node.append(dbn)
-        ins_dict.append({'dbnode_id': dbn, 'dbgroup_id': dbgroup.id})
-
-    print "Found #{} nodes".format(len(list_node))
 
     # Add the nodes to the group
     print "Adding the nodes to the group"
