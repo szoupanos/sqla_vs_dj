@@ -4,7 +4,11 @@ import click
 @click.command()
 def cmd():
     """
-    Group addition with manual SQL statement.
+    Group addition with SQL statement created using models.
+    One insert statement with multiple value pairs to be inserted
+
+    More info at
+    https://github.com/pandas-dev/pandas/issues/8953
     """
     # Importing the engine
     from sqla_json.sqla_management import engine
@@ -32,17 +36,19 @@ def cmd():
     print "Getting all the nodes"
     start_time = time.time()
 
+    ins_dict = list()
+    for (dbn, ) in session.query(DbNode.id).all():
+        ins_dict.append({'dbnode_id': dbn, 'dbgroup_id': dbgroup.id})
+
+    print "Found #{} nodes".format(len(ins_dict))
+
     # Add the nodes to the group
     print "Adding the nodes to the group"
+    from sqla_json.models.base import Base
+    my_table = Base.metadata.tables['db_dbgroup_dbnodes']
+    ins = my_table.insert().values(ins_dict)
 
-    insert_txt = ""
-    for (nid,) in session.query(DbNode.id).all():
-        insert_txt += "({}, {}), ".format(nid, dbgroup.id)
-    insert_txt = insert_txt[:-2]
-
-    statement = """INSERT INTO db_dbgroup_dbnodes(dbnode_id, dbgroup_id) values {}""".format(
-        insert_txt)
-    session.execute(statement)
+    session.execute(ins)
     session.commit()
 
     end_time = time.time()

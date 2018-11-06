@@ -4,7 +4,8 @@ import click
 @click.command()
 def cmd():
     """
-    Group addition with SQL statement created using models.
+    Group addition with manual SQL statement.
+    One statement per value pair
     """
     # Importing the engine
     from sqla_json.sqla_management import engine
@@ -32,23 +33,22 @@ def cmd():
     print "Getting all the nodes"
     start_time = time.time()
 
-    ins_dict = list()
-    list_node = list()
-    # i = 0
+    list_node_group = list()
     for (dbn, ) in session.query(DbNode.id).all():
-        list_node.append(dbn)
-        ins_dict.append({'dbnode_id': dbn, 'dbgroup_id': dbgroup.id})
+        list_node_group.append((dbn, dbgroup.id))
 
-    print "Found #{} nodes".format(len(list_node))
+    print "Found #{} nodes".format(len(list_node_group))
 
     # Add the nodes to the group
     print "Adding the nodes to the group"
-    from sqla_json.models.base import Base
-    my_table = Base.metadata.tables['db_dbgroup_dbnodes']
-    ins = my_table.insert()
-    session.execute(ins, ins_dict)
-    session.commit()
 
+    # Creating a statement one by one as it
+    for node_id, group_id in list_node_group:
+        statement = """INSERT INTO db_dbgroup_dbnodes(dbnode_id, dbgroup_id) values ({}, {})""".format(
+            node_id, group_id)
+        session.execute(statement)
+
+    session.commit()
     end_time = time.time()
 
     print "Added to group"
