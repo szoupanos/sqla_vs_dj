@@ -34,7 +34,7 @@ def cmd():
                               'attributes': json.dumps(
                                   ['attr', msec + counter, {'bar': ('baz', 'bulk_update_json_model_sql',
                                                                     sec + counter, 2)}]),
-                              'attributes': json.dumps(
+                              'extras': json.dumps(
                                   ['extra', msec + counter, {'bar': ('baz', 'bulk_update_json_model_sql',
                                                                     sec + counter, 2)}])})
         counter += 1
