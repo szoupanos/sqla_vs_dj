@@ -24,23 +24,13 @@ def cmd():
     session = Session()
 
     print "Finding all the nodes and updating them one by one"
+    counter = 0
     start_time = time.time()
 
-    print "Constructing mappings"
-    node_mappings = list()
-    counter=0
     for nid, in session.query(DbNode.id).all():
-        node_mappings.append({'id': nid,
-                              'attributes': json.dumps(
-                                  ['attr', msec + counter, {'bar': ('baz', 'bulk_update_json_bulk_update_mappings',
-                                                                    sec + counter, 2)}]),
-                              'extras': json.dumps(
-                                  ['extra', msec + counter, {'bar': ('baz', 'bulk_update_json_bulk_update_mappings',
-                                                                     sec + counter, 2)}])})
-        counter += 1
-
-    print "Committing mappings (updating nodes)"
-    session.bulk_update_mappings(DbNode, node_mappings)
+        session.execute(update(DbNode).where(DbNode.id==nid).values(attributes=json.dumps(
+            ['attr', msec, {'bar': ('baz', 'bulk_update_json_model_sql_many_updates',
+                                    sec, 2)}])))
     session.commit()
     end_time = time.time()
 
