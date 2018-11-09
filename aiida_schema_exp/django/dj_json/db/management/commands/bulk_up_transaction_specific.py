@@ -3,7 +3,7 @@ from django.core.management.base import BaseCommand
 
 class Command(BaseCommand):
     """
-    Update of a specific part of the JSON field (to be finished)
+    Update of a specific part of the JSON field.
     """
 
     def clean(self):
@@ -13,24 +13,13 @@ class Command(BaseCommand):
         from db.models import DbNode
         from db import timezone
         from django.db import transaction
-
-        import json
         import time
-
-        sec = timezone.now().second
-        msec = timezone.now().microsecond
 
         print "Finding all the nodes and updating them one by one"
         counter = 0
         start_time = time.time()
         with transaction.atomic():
             for dbn in DbNode.objects.all():
-                #my_json_attr = ['attr', msec + counter, {'bar': ('baz', None,
-                #                                      sec + counter, 2)}]
-                my_json_extra = ['extra', msec + counter, {'bar': ('baz', None,
-                                                       sec + counter, 2)}]
-                #dbn.jattributes = my_json_attr
-                #dbn.jextras = my_json_extra
                 dbn.jextras[2]['bar'][0] = "aaa"
                 dbn.save()
                 counter += 1
