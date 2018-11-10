@@ -33,10 +33,8 @@ class Command(BaseCommand):
         for i in range(NUMBER_OF_NODES_TO_CREATE):
             # print "Creating node number {}".format(i)
 
-            my_json_attr = json.dumps(
-                ['attr', i, {'bar': ('baz', None, 1.0, 2)}])
-            my_json_extra = json.dumps(
-                ['extra', i, {'bar': ('baz', None, 1.0, 2)}])
+            my_json_attr = ['attr', i, {'bar': ('baz', None, 1.0, 2)}]
+            my_json_extra = ['extra', i, {'bar': ('baz', None, 1.0, 2)}]
 
             DbNode.objects.create(label='my_node_{}'.format(i), user=usr,
                                   jattributes=my_json_attr,

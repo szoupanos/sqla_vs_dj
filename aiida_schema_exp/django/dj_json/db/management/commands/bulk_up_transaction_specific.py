@@ -11,7 +11,6 @@ class Command(BaseCommand):
 
     def handle(self, *args, **kwargs):
         from db.models import DbNode
-        from db import timezone
         from django.db import transaction
         import time
 
