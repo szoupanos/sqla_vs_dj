@@ -43,9 +43,13 @@ def cmd():
     node_mappings = list()
     counter = 0
     for i in range(NUMBER_OF_NODES_TO_CREATE):
-        node_mappings.append({'label': 'my_node_{}'.format(i), 'user_id': curr_user.id,
-                              'attributes': json.dumps(['attr', i, {'bar': ('baz', None, 1.0, 2)}]),
-                              'extras': json.dumps(['extra', i, {'bar': ('baz', None, 1.0, 2)}])})
+        node_mappings.append({
+            'label': 'my_node_{}'.format(i),
+            'user_id': curr_user.id,
+            'attributes': ['attr', i, {'bar': ('baz', None, 1.0, 2)}],
+            'extras': ['extra', i, {'bar': ('baz', None, 1.0, 2)}]
+        })
+
         counter += 1
 
     print "Committing mappings (updating nodes)"

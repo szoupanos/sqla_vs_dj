@@ -26,13 +26,7 @@ def cmd():
     start_time = time.time()
 
     for dbn in session.query(DbNode).all():
-        my_json_attr = ['attr', msec + counter, {'bar': ('baz', None,
-                                                         sec + counter, 2)}]
-        my_json_extra = ['extra', msec + counter, {'bar': ('baz', None,
-                                                           sec + counter, 2)}]
-        dbn.attributes = my_json_attr
-        dbn.extras = my_json_extra
-        flag_modified(dbn, "attributes")
+        dbn.extras[2]['bar'][0] = "aaa"
         flag_modified(dbn, "extras")
         session.add(dbn)
         counter += 1
